@@ -36,6 +36,8 @@
 #include "hostent.h"
 #include "resolv_private.h"
 
+#include "private/bsd_sys_param.h" // For ALIGN/ALIGNBYTES.
+
 #define MAX_ADDRLEN	(INET6_ADDRSTRLEN - (1 + 5))
 #define MAX_HOSTLEN	MAXHOSTNAMELEN
 
@@ -44,7 +46,6 @@
 
 /* From sethostent.c */
 #define ALIGNBYTES	(sizeof(uintptr_t) - 1)
-#define ALIGN(p)	(((uintptr_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
 
 /*
  * Host cache entry for hcfile.c_data.
